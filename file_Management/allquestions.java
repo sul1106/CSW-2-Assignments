@@ -19,9 +19,9 @@ public static void main(String[] args) {
         System.out.println("10. Recursive Directory Listing");
         System.out.println("11. Exit");
         System.out.print("Choose an operation: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // consume the newline
-        switch (choice) {
+        int c = scanner.nextInt(); 
+        scanner.nextLine(); // consume the newline 
+        switch (c) {
         case 1:
         createAndWriteFile();
         break;
@@ -55,25 +55,25 @@ public static void main(String[] args) {
         case 11:
         System.exit(0);
         default:
-        System.out.println("Invalid choice, please choose again.");
+        System.out.println("Invalid c, please choose again.");
         }
         }
 }
-private static void createAndWriteFile()
+private static void createAndWriteFile() //function to create and write in the file
 {
     Date curDate = new Date();
     String Date = curDate.toString();
-    File f = new File("D:\\jpmorgan practice\\file_Management\\text.txt");
+    File fPath = new File("D:\\jpmorgan practice\\file_Management\\text.txt");
     try
     {
         
-        if(f.exists())
+        if(fPath.exists()) //checking if file exists already
         {
             System.out.println("File already exists..");
         }
         System.out.println("Enter your diary:");
         String diary = scanner.nextLine();
-        FileWriter fileWriter = new FileWriter(f);
+        FileWriter fileWriter = new FileWriter(fPath);
         
         fileWriter.write(Date + "\n");
         fileWriter.write(diary + "\n");
@@ -87,16 +87,16 @@ private static void createAndWriteFile()
         e.printStackTrace();
     }
 }
-private static void readFile()
+private static void readFile() //function to read the file
 {
     try
     {
-         File f = new File("D:\\jpmorgan practice\\file_Management\\text.txt");
-    if(!f.exists())
+         File fPath = new File("D:\\jpmorgan practice\\file_Management\\text.txt");
+    if(!fPath.exists())
     {
         throw new FileNotFoundException("Where file?");
     }
-    Scanner sc=new Scanner(f);
+    Scanner sc=new Scanner(fPath);
     while(sc.hasNextLine())
     System.out.println(sc.nextLine());
     }
@@ -107,12 +107,12 @@ private static void readFile()
    
 
 }
-private static void appendToFile()
+private static void appendToFile() //function to append to file
 {
     try
     {
-        File f = new File("D:\\jpmorgan practice\\file_Management\\text.txt");
-        if(!f.exists())
+        File fPath = new File("D:\\jpmorgan practice\\file_Management\\text.txt");
+        if(!fPath.exists())
         {
             System.out.println("doesnt exist only");
            createAndWriteFile();
@@ -120,29 +120,28 @@ private static void appendToFile()
         }
         System.out.println("enter your diary entry");
         String entry=scanner.nextLine();
-        FileWriter fileWriter = new FileWriter(f,true);
+        FileWriter fileWriter = new FileWriter(fPath,true);
             
-    		Date curDate = new Date();
+        Date curDate = new Date();
             String Date = curDate.toString();
             fileWriter.write(Date + "\n");
             fileWriter.write(entry + "\n");
             fileWriter.close();
 
             System.out.println("Diary entry saved successfully.");
-		}
-		catch (IOException e)
+    }
+    catch (IOException e)
         {
             System.out.println(""+e);
             e.printStackTrace();
         }
-
     }
-    private static void listFilesAndDirectories()
+    private static void listFilesAndDirectories() //function to list files and dirs
     {
         System.out.print("Enter the directory path: ");
         String directoryPath = scanner.nextLine();
         File directory = new File(directoryPath);
-        if (!directory.exists() || !directory.isDirectory()) {
+        if (!directory.exists()||  !directory.isDirectory()) {
             System.out.println("Directory does not exist or is not a directory.");
             return;
             }
@@ -153,12 +152,12 @@ private static void appendToFile()
             }
             }
     }
-   private static void filterAndListTxtFiles()
-   {
+   private static void filterAndListTxtFiles() //function to filter files based on type
+   { 
     System.out.print("Enter the directory path to filter .txt files: ");
     String directoryPath = scanner.nextLine();
     File directory = new File(directoryPath);
-    if (!directory.exists() || !directory.isDirectory()) {
+    if (!directory.exists()||!directory.isDirectory()) {
     System.out.println("Directory does not exist or is not a directory.");
     return;
     }
@@ -169,7 +168,7 @@ private static void appendToFile()
  }
  }
    }
-   private static void deleteSpecificFile() {
+   private static void deleteSpecificFile() { //function to delete file data
     System.out.print("Enter the file name to delete: ");
     String fileName = scanner.nextLine();
     File file = new File(fileName);
@@ -183,7 +182,7 @@ private static void appendToFile()
     System.out.println("File could not be deleted.");
     }
     }
-   private static void copyFileContent()
+   private static void copyFileContent() //Functino to copy file content
    {
     try
     {
@@ -202,7 +201,7 @@ private static void appendToFile()
     }
        
    }
-   private static void renameFile() {
+   private static void renameFile() { //Function to rename a file
     System.out.print("Enter current file name: ");
     String currentName = scanner.nextLine();
     System.out.print("Enter new file name: ");
@@ -220,16 +219,14 @@ private static void appendToFile()
     System.out.println("File could not be renamed.");
     }
     }
-    private static void displayFileMetadata() {
+    private static void displayFileMetadata() { //function to display file Meta data
         System.out.print("Enter file name: ");
         String fileName = scanner.nextLine();
         File file = new File(fileName);
-        // Check if the file exists before displaying metadata
-        if (!file.exists()) {
+        if (!file.exists()) { // Check if the file exists 
         System.out.println("File does not exist.");
         return;
         }
-        // Display file metadata
         System.out.println("File Metadata:");
         System.out.println("Size: " + file.length() + " bytes");
         System.out.println("Last Modified: " + new Date(file.lastModified()));
@@ -245,24 +242,20 @@ private static void appendToFile()
             System.out.println("Recursive Directory Listing:");
             listDirectory(directory, 0);
             }
-           
             private static void listDirectory(File dir, int level) {
-            if (!dir.isDirectory()) {
-            return;
-            }
-            File[] files = dir.listFiles();
-            if (files != null) {
-            for (File file : files) {
-            for (int i = 0; i < level; i++) {
-           System.out.print(" ");
-            }
-            System.out.println(file.getName());
-            if (file.isDirectory()) {
-            listDirectory(file, level + 1);
-            }
-            }
-        }}           
-}
-
-
-
+                if (!dir.isDirectory()) {
+                return;
+                }
+                File[] files = dir.listFiles();
+                if (files != null) {
+                for (File file : files) {
+                for (int i = 0; i < level; i++) {
+               System.out.print(" ");
+                }
+                System.out.println(file.getName());
+                if (file.isDirectory()) {
+                listDirectory(file, level + 1);
+                }
+                }
+            }}           
+    }

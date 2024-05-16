@@ -1,14 +1,13 @@
 package strings_assignment;
-
 public class q2 
 {
     public static void main(String[] args) {
-        String s="Hello";
-   String str= s.concat(" World");
-    System.out.println(s);
-    System.out.println(str);
+        String partOne="Hello"; //creating string
+   String newPart= partOne.concat(" World");
+    System.out.println(partOne);
+    System.out.println(newPart); //Concatenated String
     CharSequence cs="Immutable";
-    System.out.println(cs.charAt(3));
+    System.out.println(cs.charAt(3)); //Using CharAt to find character at specified String 
     }
     
 }

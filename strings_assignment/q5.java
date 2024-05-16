@@ -1,23 +1,22 @@
 package strings_assignment;
-
 public class q5 {
     public static void main(String[] args) {
-        final int ITERATIONS = 1000000;
+        final int iterationNumberS = 1000000; //creating number of iterations 
         String baseString = "Hello";
-        long starttime=System.currentTimeMillis();
-        StringBuilder sb=new StringBuilder();
-        for(int i=0;i<ITERATIONS;i++){
-            sb.append(baseString);
+        long startTime=System.currentTimeMillis();
+        StringBuilder stringBuilderValue=new StringBuilder();
+        for(int i=0;i<iterationNumberS;i++){
+            stringBuilderValue.append(baseString);
         }
-        long endtime=System.currentTimeMillis();
-        System.out.println("Time taken by stringbuilder: "+ (endtime-starttime)+"The length of the string is"+ sb.length() );
-            starttime=System.currentTimeMillis();
-            StringBuffer sb2=new StringBuffer();
-            for(int i=0;i<ITERATIONS;i++)
+        long endTime=System.currentTimeMillis(); //setting end time using system time
+        System.out.println("Time taken by stringbuilder: "+ (endTime-startTime)+"The length of the string is"+ stringBuilderValue.length() );
+            startTime=System.currentTimeMillis();
+            StringBuffer stringBuilderValue2=new StringBuffer();
+            for(int i=0;i<iterationNumberS;i++)
             {
-                sb2.append(baseString);
+                stringBuilderValue2.append(baseString);
             }
-            endtime=System.currentTimeMillis();
-            System.out.println("The time taken by string buffer is"+ (endtime-starttime)+ "The length of the string is "+ sb2.length());
+            endTime=System.currentTimeMillis();
+            System.out.println("The time taken by string buffer is"+ (endTime-startTime)+ "The length of the string is "+ stringBuilderValue2.length());  // displaying time taken by String Builder
     }
 }
